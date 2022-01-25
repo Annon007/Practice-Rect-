@@ -1,23 +1,21 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
 import AddUser from './components/Users/addUser';
+import AllUsers from "./components/Users/allUsers"
 import styles from "./App.module.css"
-let allUsers=[];
+let allUsers = [];
 function App() {
-  const [users,setUsers]=useState();
+  const [users, setUsers] = useState();
 
-  const handelUser=(user)=>{
+  const handelUser = (user) => {
     allUsers.push(user)
-    setUsers(prev=>{
-      return{
-        ...prev,
-        ...allUsers
-      }
-    })
+    setUsers([...allUsers])
   };
+  console.log(users)
   return (
     <div className={styles.parentContainer}>
-      <AddUser onGetUser={handelUser}/>
+      <AddUser onGetUser={handelUser} />
+      <AllUsers users={users && users} />
     </div>
   );
 }
