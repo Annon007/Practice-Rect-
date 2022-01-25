@@ -15,7 +15,6 @@ function App() {
       }
     })
   };
-  console.log(users,"State Updated");
   return (
     <div className={styles.parentContainer}>
       <AddUser onGetUser={handelUser}/>
