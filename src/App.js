@@ -11,7 +11,6 @@ function App() {
     allUsers.push(user)
     setUsers([...allUsers])
   };
-  console.log(users)
   return (
     <div className={styles.parentContainer}>
       <AddUser onGetUser={handelUser} />
