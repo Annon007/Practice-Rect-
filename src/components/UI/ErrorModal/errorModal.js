@@ -1,24 +1,31 @@
 import React from "react";
+import ReactDom from "react-dom";
 import Card from "../Card/card";
 import Button from "../Button/button";
 import styles from "./errorModal.module.css";
+const BackDrop = props => {
+    return <div className={styles.backdrop} onClick={props.onClose} />
+
+}
+const Modal = props => {
+    return <Card className={styles.modal}>
+        <header className={styles.header}>
+            <h2>{props.title}</h2>
+        </header>
+        <div className={styles.content}>
+            <p>{props.message}</p>
+        </div>
+        <footer className={styles.actions}>
+            <Button onClick={props.onClose}> Okay </Button>
+        </footer>
+    </Card>
+}
 const ErrorModal = props => {
-    const closeModal = () =>{
-        props.onClose();
-    };
-    return <div>
-        <div className = {styles.backdrop} onClick = {closeModal} />
-        <Card className={styles.modal}>
-            <header className={styles.header}>
-                <h2>{props.title}</h2>
-            </header>
-            <div className={styles.content}>
-                <p>{props.message}</p>
-            </div>
-            <footer className={styles.actions}>
-                <Button onClick = {closeModal}> Okay </Button>
-            </footer>
-        </Card>
-    </div>
+
+    return <React.Fragment>
+        {/* creating PORTAL */}
+        {ReactDom.createPortal(<BackDrop onClose={props.onClose} />, document.getElementById("backdrop-root"))}
+        {ReactDom.createPortal(<Modal title={props.title} message={props.message} onClose={props.onClose} />, document.getElementById("modal-root"))}
+    </React.Fragment>
 }
 export default ErrorModal;
