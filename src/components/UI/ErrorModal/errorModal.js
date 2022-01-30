@@ -22,10 +22,10 @@ const Modal = props => {
 }
 const ErrorModal = props => {
 
-    return <React.Fragment>
+    return <>
         {/* creating PORTAL */}
         {ReactDom.createPortal(<BackDrop onClose={props.onClose} />, document.getElementById("backdrop-root"))}
         {ReactDom.createPortal(<Modal title={props.title} message={props.message} onClose={props.onClose} />, document.getElementById("modal-root"))}
-    </React.Fragment>
+    </>
 }
 export default ErrorModal;
